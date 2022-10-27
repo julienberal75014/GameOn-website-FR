@@ -14,7 +14,6 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  background-image: url("background.png");
   font-family: var(--font-default);
   font-size: 18px;
   max-width: 1300px;
@@ -33,17 +32,20 @@ img {
 .topnav {
   overflow: hidden;
   margin: 3.5%;
+  display: flex;
+  justify-content: space-between;
 }
+
 .header-logo {
-    float: left;
+  float: left;
 }
 .main-navbar {
-    float: right;
+  float: right;
 }
 .topnav a {
   float: left;
   display: block;
-  color: #000000;
+  color: #ff001b;
   text-align: center;
   padding: 12px 12px;
   margin: 5px;
@@ -69,7 +71,15 @@ img {
 }
 
 @media screen and (max-width: 768px) {
-  .topnav a {display: none;}
+  .topnav {
+    align-items: center;
+  }
+  .topnav img {
+    width: 80%;
+  }
+  .topnav a {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
@@ -77,7 +87,10 @@ img {
 }
 
 @media screen and (max-width: 768px) {
-  .topnav.responsive {position: relative;}
+  .topnav.responsive {
+    position: relative;
+    align-items: baseline;
+  }
   .topnav.responsive .icon {
     position: absolute;
     right: 0;
@@ -90,16 +103,15 @@ img {
   }
 }
 
-
-
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
+@media screen and (max-width: 540px) {
+  .topnav a {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
-    margin-top: -15px;
   }
-} 
+}
 
 main {
   font-size: 130%;
@@ -111,8 +123,6 @@ main {
   margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
-
-
 }
 
 .modal-btn {
@@ -226,12 +236,12 @@ input {
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
 }
-/* 
+
 input[data-error]::after {
-    content: attr(data-error);
-    font-size: 0.4em;
-    color: red;
-} */
+  content: attr(data-error);
+  font-size: 0.4em;
+  color: red;
+}
 .checkbox-label,
 .checkbox2-label {
   position: relative;
@@ -399,13 +409,53 @@ input[data-error]::after {
 .same-as-selected {
   background-color: rgba(0, 0, 0, 0.1);
 }
+
+#validationMessage {
+  font-size: 0.6em;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+  display: none;
+}
+
+#messageForm {
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: #232323;
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  font-size: 1.4em;
+  font-weight: 300;
+}
+
+#btn-close-modal {
+  background: #fe142f;
+  display: block;
+  border-radius: 7px;
+  font-size: 1rem;
+  padding: 12px 82px;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  position: absolute;
+  position: absolute;
+  right: 50%;
+  bottom: -7px;
+  transform: translate(50%, -50%);
+}
+
 /* custom select end */
 .text-label {
   font-weight: normal;
   font-size: 16px;
 }
 .hero-section {
-  min-height: 93vh;
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -440,6 +490,7 @@ input[data-error]::after {
   font-weight: normal;
   white-space: nowrap;
 }
+
 .hero-text {
   width: 146%;
   font-weight: normal;
@@ -462,6 +513,7 @@ input[data-error]::after {
   height: 100%;
   display: block;
   padding: 0;
+  object-fit: cover;
 }
 .copyrights {
   color: #fe142f;
@@ -486,7 +538,8 @@ footer {
   .hero-content {
     background: #fff;
     color: #000;
-    padding: 20px;
+    padding: 20px 0px 20px 0px;
+    min-width: auto;
   }
   .hero-content::after {
     content: unset;
@@ -495,7 +548,8 @@ footer {
     display: none;
   }
   .hero-headline {
-    font-size: 4.5rem;
+    font-size: -webkit-xxx-large;
+    font-size: xxx-large;
     white-space: normal;
   }
   .hero-text {
@@ -512,8 +566,20 @@ footer {
     padding: 12px 35px;
   }
   .copyrights {
-    margin-top: 50px;
+    margin-top: 29px;
     text-align: center;
+  }
+}
+
+@media (max-width: 950px) and (min-width: 801px) {
+  .hero-headline {
+    font-size: 5rem;
+  }
+  .hero-content::after {
+    right: 0px;
+  }
+  .hero-text {
+    width: 115%;
   }
 }
 
@@ -526,4 +592,3 @@ footer {
     opacity: 1;
   }
 }
-
