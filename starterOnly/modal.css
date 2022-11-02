@@ -410,16 +410,7 @@ input[data-error]::after {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-#validationMessage {
-  font-size: 0.6em;
-  width: 100%;
-  text-align: center;
-  margin-bottom: 10px;
-  display: none;
-}
-
 #messageForm {
-  display: none;
   width: 100%;
   height: 100%;
   background-color: #232323;
@@ -435,6 +426,14 @@ input[data-error]::after {
   font-weight: 300;
 }
 
+.inscriptionMessage {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  left: 25%;
+  bottom: 50%;
+}
+
 #btn-close-modal {
   background: #fe142f;
   display: block;
@@ -446,8 +445,9 @@ input[data-error]::after {
   position: absolute;
   position: absolute;
   right: 50%;
-  bottom: -7px;
+  bottom: 10px;
   transform: translate(50%, -50%);
+  border: none;
 }
 
 /* custom select end */

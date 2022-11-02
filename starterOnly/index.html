@@ -57,36 +57,36 @@
         <div class="modal-body">
 
           <!-- Form -->
-          <form name="reserve" action="index.html" method="get" onsubmit="return validate();">
+          <form id="form" name="reserve" action="index.html" method="get" onsubmit="return validate();">
 
             <!-- Input & Label -->
             <div class="formData">
               <label for="first">Prénom</label><br>
               <input class="text-control" type="text" id="first" name="first" minlength="2" /><br>
-              <div class="error-message"></div>
+              <span class="error-message" id="firstAlert"></span>
             </div>
             <div class="formData">
               <label for="last">Nom</label><br>
               <input class="text-control" type="text" id="last" name="last" /><br>
-              <div class="error-message"></div>
+              <span class="error-message" id="lastAlert"></span>
             </div>
             <div class="formData">
               <label for="email">E-mail</label><br>
               <input class="text-control" type="email" id="email" name="email" /><br>
-              <div class="error-message"></div>
+              <span class="error-message" id="emailAlert"></span>
             </div>
             <div class="formData">
               <label for="birthdate">Date de naissance</label><br>
               <input class="text-control" type="date" id="birthdate" name="birthdate" /><br>
-              <div class="error-message"></div>
+              <span class="error-message" id="birthdateAlert"></span>
             </div>
             <div class="formData">
               <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-              <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
-              <div class="error-message"></div>
+              <input type="number" class="text-control" id="quantity" name="quantity">
+              <span class="error-message" id="quantityAlert"></span>
             </div>
             <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
-            <div class="formData">
+            <div class="formData locations">
               <input class="checkbox-input" type="radio" id="location1" name="location" value="New York" />
               <label class="checkbox-label" for="location1">
                 <span class="checkbox-icon"></span>
@@ -111,7 +111,7 @@
               <label class="checkbox-label" for="location6">
                 <span class="checkbox-icon"></span>
                 Portland</label>
-              <div class="error-message"></div>
+              <span class="error-message" id="cityAlert"></span>
             </div>
             <div class="formData">
               <input class="checkbox-input" type="checkbox" id="checkbox1" checked />
@@ -120,7 +120,7 @@
                 J'ai lu et accepté les conditions d'utilisation.
               </label>
               <br>
-              <div class="error-message"></div>
+              <span class="error-message" id="userTermsAlert"></span>
               <input class="checkbox-input" type="checkbox" id="checkbox2" />
               <label class="checkbox2-label" for="checkbox2">
                 <span class="checkbox-icon"></span>
@@ -128,23 +128,21 @@
               </label>
               <br>
 
-              <!-- Validate-message -->
-              <div id="validationMessage">
-                <p>Merci ! Votre réservation a été reçue.</p>
-              </div>
             </div>
-            <input class="btn-submit button" type="submit" value="C'est parti" />
-            <div id="messageForm">
-              <div>
-                <p>
-                  Merci pour <br>
-                  votre inscription.
-                </p>
-              </div>
-              <div><span id="btn-close-modal">Fermer</span></div>
-            </div>
-
+            <input class="btn-submit" type="submit" class="button" value="C'est parti" />
           </form>
+
+          <!-- Validation Message -->
+          <div id="messageForm" class="register">
+            <span class="close"></span>
+            <div class="inscriptionMessage">
+              <p>
+                Merci pour <br>
+                votre inscription.
+              </p>
+            </div>
+            <div><button id="btn-close-modal">Fermer</button></div>
+          </div>
         </div>
       </div>
     </div>
