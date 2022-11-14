@@ -7,6 +7,7 @@ function editNav() {
   }
 }
 
+
 // DOM Elements
 
 const modalbg = document.querySelector(".bground");
@@ -26,12 +27,18 @@ function closeModal() {
   modalbg.style.display = 'none';
 }
 
+// Close modal button
+function closeModalButton() {
+  modalbg.style.display = 'none';
+  window.location.reload();
+}
+
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
 //Close modal event
 closeBtn.forEach((btn) => btn.addEventListener("click", closeModal));
-closeModalBtn.addEventListener("click", closeModal);
+closeModalBtn.addEventListener("click", closeModalButton);
 
 // DOM form elements
 
@@ -62,7 +69,7 @@ const quantityAlert = document.getElementById("quantityAlert");
 const locationAlert = document.getElementById("cityAlert");
 const userTermsAlert = document.getElementById("userTermsAlert");
 
-// Validation
+// Confirmation message
 
 const confirmationMessage = document.getElementById("messageForm");
 confirmationMessage.style.display = "none";
@@ -72,7 +79,6 @@ confirmationMessage.style.display = "none";
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 });
-
 
 function validate() {
   let firstNameValidate;
@@ -87,6 +93,9 @@ function validate() {
   let conditionsValidate;
 
   // First name validation
+  // Vérifie que le prénom match avec les regex et qu'il possède au moins 2 caractères, si c'est le cas cela est validé
+  // Si le champ du prénom est vide un message d'erreur s'affiche
+  // Si le prénom ne match pas avec les regex et compte moins de 2 caractères un message d'erreur s'affiche
   if (firstName.value.match(nameRegex) && firstName.value.match(numberRegex) && firstName.value.trim().length >= 2) {
     firstAlert.style.display = "none";
     firstName.style.border = "none";
@@ -108,6 +117,9 @@ function validate() {
   }
 
   // Last name validation
+  // Vérifie que le nom match avec les regex et qu'il possède au moins 2 caractères, si c'est le cas cela est validé
+  // Si le champ du nom est vide un message d'erreur s'affiche
+  // Si le nom ne match pas avec les regex et compte moins de 2 caractères un message d'erreur s'affiche
   if (lastName.value.match(nameRegex) && lastName.value.match(numberRegex) && lastName.value.trim().length >= 2) {
     lastAlert.style.display = "none";
     lastName.style.border = "none";
@@ -129,9 +141,12 @@ function validate() {
   }
 
   // Email validation
+  // Vérifie que l'email match avec la regex, si c'est le cas cela est validé
+  // Si le champ de l'email est vide un message d'erreur s'affiche
+  // Si l'email ne match pas avec la regex un message d'erreur s'affiche
   if (email.value.match(emailRegex)) {
     emailAlert.style.display = "none";
-    emailAlert.style.border = "none";
+    email.style.border = "none";
     emailValidate = true;
   } else if (email.value === "") {
     emailAlert.textContent = "Merci de renseigner votre email";
@@ -150,9 +165,12 @@ function validate() {
   }
 
   // Birthdate validation
+  // Vérifie que la date de naissance match avec la regex et que l'utilisateur n'est pas née après la date du jour, si c'est le cas cela est validé
+  // Si le champ de la date de naissance est vide un message d'erreur s'affiche
+  // Si la date de naissance ne match pas avec la regex ou que l'utilisateur est née après la date du jour un message d'erreur s'affiche
   if (birthDate.value.match(ageRegex) && date < currentDate) {
     birthdateAlert.style.display = "none";
-    birthdateAlert.style.border = "none";
+    birthDate.style.border = "none";
     birthDateValidate = true;
   } else if (birthDate.value === "") {
     birthdateAlert.textContent = "Merci de renseigner votre date de naissance";
@@ -171,9 +189,12 @@ function validate() {
   }
 
   // Quantity validation
+  // Vérifie que la quantité match avec la regex, si c'est le cas cela est validé
+  // Si le champ de la quantité est vide un message d'erreur s'affiche
+  // Si la quantité n'est pas comprise entre 0 et 99 un message d'erreur s'affiche
   if (quantity.value.match(quantityRegex)) {
     quantityAlert.style.display = "none";
-    quantityAlert.style.border = "none";
+    quantity.style.border = "none";
     quantityValidate = true;
   } else if (quantity.value === "") {
     quantityAlert.textContent = "Merci de renseigner le nombre de tournois";
@@ -192,6 +213,8 @@ function validate() {
   }
 
   // Location validation
+  // Si aucune ville n'a été sélectionnée un message d'erreur s'affiche
+  // Si une ville a été sélectionnée cela est validé
   if (locations.value === "0") {
     cityAlert.textContent = "Merci de choisir une ville";
     cityAlert.style.color = "red";
@@ -207,9 +230,10 @@ function validate() {
 
 
   // Conditions validation
+  // Si les conditions générales d'utilisation sont acceptées c'est validé
+  // Si les conditions générales d'utilisation ne sont pas acceptées un message d'erreur s'affiche
   if (conditions.checked) {
     userTermsAlert.style.display = "none";
-    userTermsAlert.style.border = "none";
     conditionsValidate = true;
   } else {
     userTermsAlert.textContent = "Merci de valider les conditions d'utilisation";
@@ -220,40 +244,12 @@ function validate() {
   }
 
   // Confirmation message
+  // Si toutes les validations sont validées un message de confirmation s'affiche et le formulaire est envoyé + reset du formulaire
+  // Si une des validations n'est pas validée le message de confirmation ne s'affiche pas
   if (firstNameValidate && lastNameValidate && emailValidate && birthDateValidate && quantityValidate && locationsValidate && conditionsValidate) {
     confirmationMessage.style.display = "block";
+    form.reset();
   } else {
     confirmationMessage.style.display = "none";
   }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+} // End of the function
